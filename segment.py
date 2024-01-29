@@ -440,7 +440,7 @@ def train_meanteacher(labeled_trainloader, unlabeled_trainloader, model, ema_mod
             p1,p2,z1,z2 = outputs[1],outputs_ema[1],outputs[2],outputs_ema[2]
             Lc = (mse(p1, z2).mean() + mse(p2, z1).mean()) * 0.5
 
-            loss = Lx + Lu + Lc
+            loss = 0.5*Lx + 0.25*Lu + 0.25*Lc
             # loss = Lx + Lu
         else:
             loss = Lx
